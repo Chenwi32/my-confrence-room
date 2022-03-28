@@ -11,6 +11,9 @@ const { v4: uuidv4 } = require("uuid");
 // This sets the view engine, without which the app will not be able to identify the ejs file
 app.set("view engine", "ejs");
 
+// This specifies the path for our public folder
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
   res.redirect(`/${uuidv4()}`);
 });
