@@ -44,8 +44,13 @@ io.on("connection", (socket) => {
     socket.join(roomId);
 
     // This then shows the new user in the frontend
-    console.log({ roomId })
     socket.broadcast.emit('user-connected', userId)
+
+    /* Here we want the server to recieve the message and send it back to the frontend */
+
+    socket.on('message', /* this text in quotes should match the one in the script.js */ message => {
+      io.to(roomId).emit('createMessage', message)
+    })
   });
 });
 

@@ -13,12 +13,39 @@
         const ROOM_ID = "<%= roomId %>"
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
     <title>Eugene's Video Conference Room</title>
   </head>
   <body>
-    <h1>Welcome to my conference room</h1>
+    <h1>Welcome to Eugene's conference room</h1>
 
-    <div id="video_grid"></div>
+    <div class="conferenceroom_container">
+
+      <div class="video_grid_container">
+        <div id="video_grid"></div>
+      </div>
+  
+      <div class="right_pannel">
+        <div>
+          <h4>Chat</h4>
+        <div class="messages">
+
+          <ul id="messages_in">
+
+          </ul>
+        </div>
+        </div>
+        
+
+        <div class="message_input">
+          <input type="text" name="message" id="message">
+          <button type="submit" id="send">send</button>
+        </div>
+      </div>
+    </div>
+    
+    
   </body>
 
   <script src="script.js"></script>
