@@ -30,7 +30,9 @@ navigator.mediaDevices
     peer.on('call', call => {
       call.answer(stream)
       const video = document.createElement('video')
-      call.on('stream', )
+      call.on('stream', userVideoStream => {
+        addVideoStream(video, userVideoStream)
+      })
     })
 
     // Here we need to then listen to the responds of user connected and then do something
