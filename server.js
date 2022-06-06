@@ -49,7 +49,8 @@ io.on("connection", (socket) => {
     /* Here we want the server to recieve the message and send it back to the frontend */
 
     socket.on('message', /* this text in quotes should match the one in the script.js */ message => {
-      io.to(roomId).emit('createMessage', message)
+      io.emit('createMessage', message)
+      /* io.to(roomId).emit('createMessage', message) this will show the message in the specified */
     })
   });
 });

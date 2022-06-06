@@ -89,10 +89,11 @@ $("html").keydown((e) => {
   }
 });
 
-$("#send").click((e) => {
-  if (msg.val().length !== 0 /* 13 is the code for the enter key */) {
+$("#send").click(() => {
+  if (msg.val().length !== 0) {
     socket.emit("message", msg.val());
     msg.val("");
+
   }
 });
 
@@ -108,6 +109,6 @@ socket.on("createMessage", (message) => {
 /* to solve scroling issues in the chat */
 
 const scrollToBottom = () => {
-  const messagesContainer = $(".messages");
-  messagesContainer.scrollTop(messagesContainer.prop('scrollHeight'))
+  let messageContainer = $("#messages");
+  messageContainer.animate({ scrollTop: messageContainer.prop("scrollHeight") });
 }
