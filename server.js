@@ -12,12 +12,12 @@ const io = require("socket.io")(server);
 const { v4: uuidv4 } = require("uuid");
 
 // Import peerJs and set up a serve with it for peer-to-peer connection to be able to share audio and videos etc,
-const {ExpressPeerServer} = require('peer');
+const { ExpressPeerServer } = require("peer");
 const { debug } = require("console");
- 
+
 const peerServer = ExpressPeerServer(server, () => {
-  debug: true 
-})
+  debug: true;
+});
 
 // This sets the view engine, without which the app will not be able to identify the ejs file
 app.set("view engine", "ejs");
@@ -26,7 +26,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 // Base url for peerJs server
-app.use('/peerjs', peerServer)
+app.use("/peerjs", peerServer);
 
 app.get("/", (req, res) => {
   res.redirect(`/${uuidv4()}`);
@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
 // ***NB: Without the colon(:) before the room after /, the url will not work.
 app.get("/:room", (req, res) => {
   res.render("room", { roomId: req.params.room });
-}); 
+});
 
 io.on("connection", (socket) => {
   // This accepts the socket.emit('join-room') call that is done in the frontend script.js
@@ -44,18 +44,21 @@ io.on("connection", (socket) => {
     socket.join(roomId);
 
     // This then shows the new user in the frontend
-    socket.broadcast.emit('user-connected', userId)
+    socket.broadcast.emit("user-connected", userId);
 
     /* Here we want the server to recieve the message and send it back to the frontend */
 
-    socket.on('message', /* this text in quotes should match the one in the script.js */ message => {
-      io.emit('createMessage', message)
-      /* io.to(roomId).emit('createMessage', message) this will show the message in the specified */
-    })
+    socket.on(
+      "message",
+      /* this text in quotes should match the one in the script.js */ (
+        message
+      ) => {
+        io.emit("createMessage", message);
+        /* io.to(roomId).emit('createMessage', message) this will show the message in the specified */
+      }
+    );
   });
 });
 
 // to get the server tlistenig to activities in a port
-server.listen(3010, () => {
-  console.log(`Successfully Connected To Server at Port: 3010`);
-});
+server.listen(process.env.PORT || 3010);
