@@ -10,7 +10,7 @@ var peer = new Peer(
   {
     path: "/peerjs",
     host: "/",
-    port: "3010",
+    port: "443",
   }
 );
 
