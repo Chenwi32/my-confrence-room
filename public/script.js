@@ -156,8 +156,8 @@ const playStop = () => {
 const setPlayVideo = () => {
   const html = `
   <i class='unmute fas fa-video-slash'></i>
-<span>Stop Video</span>
-  `
+<span>Sart Video</span>
+  `;
   document.querySelector(".main_video_button").innerHTML = html;
 };
 
@@ -165,6 +165,6 @@ const setStopVideo = () => {
   const html = `
   <i class='fas fa-video'></i>
 <span>Stop Video</span>
-  `
+  `;
   document.querySelector(".main_video_button").innerHTML = html;
 };
