@@ -74,7 +74,7 @@
 .messages {
   overflow-y: auto;
   flex-grow: 1;
-  max-height: 60vh;
+  min-height: 60vh;
 }
 
 #messages_in {
@@ -122,7 +122,13 @@
 
 /*------ Mobile Version -------*/
 
+/*------ Tablet ------*/
+
 @media (max-width: 900px) {
+  .main_title {
+    font-size: 2rem;
+  }
+
   .video_grid_container {
     flex: 0.7;
     padding: 1em 0 0;
@@ -141,14 +147,70 @@
     font-size: 0.7rem;
   }
 
-  .controls_icons:hover {
-    background-color: rgba(78, 77, 77, 0.541);
-  }
-
   .leave_meeting {
     padding: 0.5em;
     font-weight: 600;
     font-size: 0.7rem;
     margin-right: 0.5em;
+  }
+}
+
+/*------ Phone ------*/
+
+@media (max-width: 610px) {
+  .main_title {
+    font-size: 1.5rem;
+  }
+
+  .conferenceroom_container {
+    flex-direction: column;
+  }
+
+  .video_grid_container {
+    min-height: 50vh;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+
+  #video_grid {
+    padding: 0.5em;
+    height: fit-content;
+  }
+
+  #video_grid video {
+    width: 98%;
+    height: 980%;
+  }
+
+  .right_pannel {
+    min-height: 30vh;
+  }
+
+  .message_input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #message {
+    border: 1px solid rgba(119, 119, 119, 0.521);
+    border-radius: 5px;
+    padding: 0.5em;
+    outline: none;
+    margin: 0;
+    width: 95%;
+  }
+
+  #send {
+    border: none;
+    background-color: inherit;
+    outline: none;
+  }
+
+  .messages {
+    overflow-y: auto;
+    flex-grow: 1;
+    min-height: unset;
   }
 }
