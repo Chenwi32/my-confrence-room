@@ -120,6 +120,10 @@
   cursor: pointer;
 }
 
+.unmute {
+  color: red;
+}
+
 /*------ Mobile Version -------*/
 
 /*------ Tablet ------*/

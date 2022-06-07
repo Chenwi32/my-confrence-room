@@ -40,7 +40,7 @@
         <div id="video_grid"></div>
         <div class="controls flex">
           <div class="controls_left flex">
-            <span class="controls_icons">
+            <span class="controls_icons initial_mute_button" onclick="muteUnmute()">
               <i class="fa fa-microphone" aria-hidden="true"></i>
               Mute
             </span>
@@ -79,8 +79,15 @@
         </div>
 
         <div class="message_input">
-          <input type="text" name="message" placeholder="Type a message" id="message" />
-          <button type="submit" id="send"><i class="fa-solid fa-paper-plane"></i></button>
+          <input
+            type="text"
+            name="message"
+            placeholder="Type a message"
+            id="message"
+          />
+          <button type="submit" id="send">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
         </div>
       </div>
     </div>

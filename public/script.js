@@ -2,7 +2,7 @@
 const socket = io("/");
 const videoGrid = document.querySelector("#video_grid");
 const myVideo = document.createElement("video");
-myVideo.muted = false;
+myVideo.muted = true;
 
 // Create a peer
 var peer = new Peer(
@@ -20,7 +20,7 @@ let myVideoStream;
 navigator.mediaDevices
   .getUserMedia({
     video: true,
-    Audio: true,
+    audio: true,
   })
   .then((stream) => {
     try {
@@ -93,7 +93,6 @@ $("#send").click(() => {
   if (msg.val().length !== 0) {
     socket.emit("message", msg.val());
     msg.val("");
-
   }
 });
 
@@ -102,13 +101,58 @@ socket.on("createMessage", (message) => {
   $("#messages_in").append(
     `<li class="message_in"><b>Sender</b><br>${message}</li>`
   );
-  scrollToBottom()
+  scrollToBottom();
 });
-
 
 /* to solve scroling issues in the chat */
 
 const scrollToBottom = () => {
   let messageContainer = $("#messages");
-  messageContainer.animate({ scrollTop: messageContainer.prop("scrollHeight") });
-}
+  messageContainer.animate({
+    scrollTop: messageContainer.prop("scrollHeight"),
+  });
+};
+
+// Mute functionallity
+
+const muteUnmute = () => {
+  const enabled = myVideoStream.getAudioTracks()[0].enabled;
+  if (enabled) {
+    myVideoStream.getAudioTracks()[0].enabled = false;
+    setUnmuteButton();
+  } else {
+    setMuteButton();
+    myVideoStream.getAudioTracks()[0].enabled = true;
+  }
+};
+
+const setUnmuteButton = () => {
+  const html = `
+  <i class="unmute fas fa-microphone-slash"></i>
+               <span>Unmute</span>
+  `;
+  document.querySelector(".initial_mute_button").innerHTML = html;
+};
+
+const setMuteButton = () => {
+  const html = `
+  <i class=" fas fa-microphone"></i>
+               <span>Mute</span>
+  `;
+  document.querySelector(".initial_mute_button").innerHTML = html;
+};
+
+const playStop = () => {
+  const enabled = myVideoStream.getVideoTracks()[0].enabled;
+  if (enabled) {
+    myVideoStream.getVideoTracks()[0].enabled = false;
+    setPlayVideo();
+  } else {
+    myVideoStream.getVideoTracks()[0].enabled = true;
+    setStopVideo();
+  }
+};
+
+const setPlayVideo = () => {};
+
+const setStopVideo = () => {};
