@@ -15,9 +15,12 @@ const { v4: uuidv4 } = require("uuid");
 const { ExpressPeerServer } = require("peer");
 const { debug } = require("console");
 
-const peerServer = ExpressPeerServer(server, () => {
-  debug: true;
+const peerServer = ExpressPeerServer(server, {
+  debug: true,
+  config: { iceServers: [{ url: "stun:stun.l.google.com:19302" }] },
 });
+
+
 
 // This sets the view engine, without which the app will not be able to identify the ejs file
 app.set("view engine", "ejs");
